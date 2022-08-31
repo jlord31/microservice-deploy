@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: docker-kubernates
-        image: jlord31/udagram-frontend
+        image: jlord31/udagram-frontend:v1
         ports:
         - containerPort: 8100
         env:
