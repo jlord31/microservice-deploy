@@ -15,16 +15,16 @@ spec:
         app: udagram-frontend
     spec:
       containers:
-      - name: docker-kubernates
+      - name: udagram-frontend
         image: jlord31/udagram-frontend:v1
         ports:
         - containerPort: 8100
         env:
-          - name: AWS_USER
+          - name: credentials
             valueFrom:
               secretKeyRef:
                 name: aws-secret
-                key: AWS_USER
+                key: credentials
           - name: POSTGRES_USERNAME
             valueFrom:
               secretKeyRef:
