@@ -15,7 +15,7 @@ spec:
         app: udagram-api-feed
     spec:
       containers:
-      - name: udagram-api-feed
+      - name: backend-feed
         image: jlord31/udagram-api-feed:v1
         ports:
         - containerPort: 8080
