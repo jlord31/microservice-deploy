@@ -16,9 +16,16 @@ spec:
     spec:
       containers:
       - name: docker-kubernates
-        image: jlord31/reverseproxy
+        image: jlord31/reverseproxy:v1
         ports:
         - containerPort: 8080
+        resources:
+          requests:
+            memory: "150Mi"
+          limits:
+            memory: "300Mi"
+        command: ["stress"]
+        args: ["--vm", "1", "--vm-bytes", "250M", "--vm-hang", "1"]
         env:
           - name: AWS_USER
             valueFrom:
