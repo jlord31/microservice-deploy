@@ -5,9 +5,9 @@ metadata:
   labels:
     app: env-configmap
 data:
-  POSTGRES_HOST: micro-database-2.cuxfohxmwd2x.us-east-1.rds.amazonaws.com
+  POSTGRES_HOST: postgres.c9kmmfueozsw.us-east-1.rds.amazonaws.com
   POSTGRES_DB: postgres
-  AWS_BUCKET: project3-271646289282-dev
+  AWS_BUCKET: my-735770976275-bucket
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing
