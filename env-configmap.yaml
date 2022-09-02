@@ -5,10 +5,12 @@ metadata:
   labels:
     app: env-configmap
 data:
-  POSTGRES_HOST: postgres.c9kmmfueozsw.us-east-1.rds.amazonaws.com
+  POSTGRES_HOST: postgres.ci7fkyute5qo.us-east-1.rds.amazonaws.com
   POSTGRES_DB: postgres
-  AWS_BUCKET: my-735770976275-bucket
+  AWS_BUCKET: micro-127052798243-bucket
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing
   URL: http://localhost:8080
+  POSTGRES_USERNAME: postgres
+  POSTGRES_PASSWORD: data1234
