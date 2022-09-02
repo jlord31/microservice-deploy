@@ -27,13 +27,13 @@ spec:
                 key: credentials
           - name: POSTGRES_USERNAME
             valueFrom:
-              secretKeyRef:
-                name: env-secret
+              configMapKeyRef:
+                name: env-configmap
                 key: POSTGRES_USERNAME
           - name: POSTGRES_PASSWORD
             valueFrom:
-              secretKeyRef:
-                name: env-secret
+              configMapKeyRef:
+                name: env-configmap
                 key: POSTGRES_PASSWORD
           - name: POSTGRES_HOST
             valueFrom:

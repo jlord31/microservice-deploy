@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: udagram-api-feed
+  name: backend-feed
   labels:
-    app: udagram-api-feed
+    app: backend-feed
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: udagram-api-feed
+      app: backend-feed
   template:
     metadata:
       labels:
-        app: udagram-api-feed
+        app: backend-feed
     spec:
       containers:
       - name: backend-feed
@@ -27,13 +27,13 @@ spec:
                 key: credentials
           - name: POSTGRES_USERNAME
             valueFrom:
-              secretKeyRef:
-                name: env-secret
+              configMapKeyRef:
+                name: env-configmap
                 key: POSTGRES_USERNAME
           - name: POSTGRES_PASSWORD
             valueFrom:
-              secretKeyRef:
-                name: env-secret
+              configMapKeyRef:
+                name: env-configmap
                 key: POSTGRES_PASSWORD
           - name: POSTGRES_HOST
             valueFrom:
