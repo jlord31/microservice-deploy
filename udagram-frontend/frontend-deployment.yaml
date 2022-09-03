@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: udagram-frontend
-        image: jlord31/udagram-frontend:v2
+        image: jlord31/udagram-frontend:v3
         ports:
-        - containerPort: 8100
+        - containerPort: 80
 
