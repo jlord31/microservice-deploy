@@ -11,6 +11,6 @@ data:
   AWS_REGION: us-east-1
   AWS_PROFILE: default
   JWT_SECRET: testing
-  URL: http://localhost:8080
+  URL: http://ae1e992f1b09b425ca4bd0b14fde80fc-2012011553.us-east-1.elb.amazonaws.com:8080
   POSTGRES_USERNAME: postgres
   POSTGRES_PASSWORD: data1234
