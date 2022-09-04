@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: backend-user
-        image: jlord31/udagram-api-user:v1
+        image: jlord31/udagram-api-user:v2
         ports:
         - containerPort: 8080
         env:

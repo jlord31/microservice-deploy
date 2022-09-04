@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: reverseproxy
-        image: jlord31/reverseproxy:v1
+        image: jlord31/reverseproxy:v2
         ports:
         - containerPort: 8080
         env:
