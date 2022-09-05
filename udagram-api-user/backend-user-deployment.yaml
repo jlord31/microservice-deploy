@@ -1,72 +1,158 @@
+# apiVersion: apps/v1
+# kind: Deployment
+# metadata:
+#   name: backend-user
+#   labels:
+#     app: backend-user
+# spec:
+#   replicas: 2
+#   selector:
+#     matchLabels:
+#       app: backend-user
+#   template:
+#     metadata:
+#       labels:
+#         app: backend-user
+#     spec:
+#       containers:
+#       - name: backend-user
+#         image: jlord31/backend-user:v2
+#         ports:
+#         - containerPort: 80
+#         env:
+#           - name: credentials
+#             valueFrom:
+#               secretKeyRef:
+#                 name: aws-secret
+#                 key: credentials
+#           - name: POSTGRES_USERNAME
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: POSTGRES_USERNAME
+#           - name: POSTGRES_PASSWORD
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: POSTGRES_PASSWORD
+#           - name: POSTGRES_HOST
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: POSTGRES_HOST
+#           - name: POSTGRES_DB
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: POSTGRES_DB
+#           - name: AWS_BUCKET
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: AWS_BUCKET
+#           - name: AWS_REGION
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: AWS_REGION
+#           - name: AWS_PROFILE
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: AWS_PROFILE
+#           - name: JWT_SECRET
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: JWT_SECRET
+#           - name: URL
+#             valueFrom:
+#               configMapKeyRef:
+#                 name: env-configmapmap
+#                 key: URL
+
+
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-user
+  name: udagram-api-user
   labels:
-    app: backend-user
+    app: udagram-api-user
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: backend-user
+      app: udagram-api-user
   template:
     metadata:
       labels:
-        app: backend-user
+        app: udagram-api-user
     spec:
       containers:
-      - name: backend-user
-        image: jlord31/udagram-api-user:v2
-        ports:
-        - containerPort: 8080
+      - name: udagram-api-user
+        image: jlord31/backend-user:v2
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "512Mi"
+            cpu: "250m"
+          limits:
+            memory: "4096Mi"
+            cpu: "500m"
+        envFrom:
+        - configMapRef:
+            name: env-configmap
+        - secretRef:
+            name: env-secret
         env:
-          - name: credentials
-            valueFrom:
-              secretKeyRef:
-                name: aws-secret
-                key: credentials
-          - name: POSTGRES_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_USERNAME
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_PASSWORD
-          - name: POSTGRES_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_HOST
-          - name: POSTGRES_DB
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_DB
-          - name: AWS_BUCKET
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: AWS_BUCKET
-          - name: AWS_REGION
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: AWS_REGION
-          - name: AWS_PROFILE
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: AWS_PROFILE
-          - name: JWT_SECRET
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: JWT_SECRET
-          - name: URL
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: URL
+        - name: credentials
+          valueFrom:
+            secretKeyRef:
+              name: aws-secret
+              key: credentials
+        - name: POSTGRES_USERNAME
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_USERNAME
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_HOST
+        - name: POSTGRES_DB
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: POSTGRES_DB
+        - name: AWS_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_BUCKET
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_REGION
+        - name: AWS_PROFILE
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_PROFILE
+        - name: JWT_SECRET
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: AWS_PROFILE
+        - name: URL
+          valueFrom:
+            configMapKeyRef:
+              name: env-configmap
+              key: URL
+      restartPolicy: Always
