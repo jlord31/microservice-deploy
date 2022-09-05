@@ -1,72 +1,30 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: reverseproxy
+  name: udagram-reverseproxy
   labels:
-    app: reverseproxy
+    app: udagram-reverseproxy
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: reverseproxy
+      app: udagram-reverseproxy
   template:
     metadata:
       labels:
-        app: reverseproxy
+        app: udagram-reverseproxy
     spec:
       containers:
-      - name: reverseproxy
-        image: jlord31/reverseproxy:v2
+      - name: nginx
+        image: jlord31/reverseproxy:v4
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "250m"
+          limits:
+            memory: "4096Mi"
+            cpu: "500m"
         ports:
         - containerPort: 8080
-        env:
-          - name: credentials
-            valueFrom:
-              secretKeyRef:
-                name: aws-secret
-                key: credentials
-          - name: POSTGRES_USERNAME
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_USERNAME
-          - name: POSTGRES_PASSWORD
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_PASSWORD
-          - name: POSTGRES_HOST
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_HOST
-          - name: POSTGRES_DB
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: POSTGRES_DB
-          - name: AWS_BUCKET
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: AWS_BUCKET
-          - name: AWS_REGION
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: AWS_REGION
-          - name: AWS_PROFILE
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: AWS_PROFILE
-          - name: JWT_SECRET
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: JWT_SECRET
-          - name: URL
-            valueFrom:
-              configMapKeyRef:
-                name: env-configmap
-                key: URL
+      restartPolicy: Always

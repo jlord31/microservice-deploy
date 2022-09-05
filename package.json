@@ -1,0 +1,20 @@
+{
+  "name": "cd0354-monolith-to-microservices-project",
+  "version": "1.0.0",
+  "description": "Udagram is a simple cloud application developed alongside the Udacity Cloud Engineering Nanodegree. It allows users to register and log into a web client, post photos to the feed, and process photos using an image filtering microservice.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jlord31/microservice-deploy.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jlord31/microservice-deploy/issues"
+  },
+  "homepage": "https://github.com/jlord31/microservice-deploy#readme"
+}
